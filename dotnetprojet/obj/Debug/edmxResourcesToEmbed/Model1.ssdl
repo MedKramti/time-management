@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="IdChildren" />
+    </Key>
+    <Property Name="IdChildren" Type="int" Nullable="false" />
+    <Property Name="childrenName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="studyLevel" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="schoolDistance" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="idTask" />
+    </Key>
+    <Property Name="idTask" Type="int" Nullable="false" />
+    <Property Name="person" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="eventName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="startDate" Type="datetime" Nullable="false" />
+    <Property Name="finishDate" Type="datetime" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Health">
+    <Key>
+      <PropertyRef Name="personName" />
+      <PropertyRef Name="date" />
+    </Key>
+    <Property Name="personName" Type="int" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="activity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persons">
+    <Key>
+      <PropertyRef Name="personName" />
+    </Key>
+    <Property Name="personName" Type="int" Nullable="false" />
+    <Property Name="job" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="schedule" Type="text" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Project_DB.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="firstName" />
+      <PropertyRef Name="lastName" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="birthday" />
+      <PropertyRef Name="genre" />
+      <PropertyRef Name="address" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="nbChildren" />
+      <PropertyRef Name="father" />
+      <PropertyRef Name="mother" />
+    </Key>
+    <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="birthday" Type="datetime" Nullable="false" />
+    <Property Name="genre" Type="int" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="nbChildren" Type="int" Nullable="false" />
+    <Property Name="father" Type="int" Nullable="false" />
+    <Property Name="mother" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Project_DBModelStoreContainer">
+    <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Health" EntityType="Self.Health" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User].[firstName] AS [firstName], 
+    [User].[lastName] AS [lastName], 
+    [User].[email] AS [email], 
+    [User].[password] AS [password], 
+    [User].[birthday] AS [birthday], 
+    [User].[genre] AS [genre], 
+    [User].[address] AS [address], 
+    [User].[status] AS [status], 
+    [User].[nbChildren] AS [nbChildren], 
+    [User].[father] AS [father], 
+    [User].[mother] AS [mother]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
